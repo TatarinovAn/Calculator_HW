@@ -1,3 +1,4 @@
+import javax.sound.midi.Soundbank;
 import java.util.function.*;
 
 public class Calculator {
@@ -6,7 +7,10 @@ public class Calculator {
     BinaryOperator<Integer> plus = (x, y) -> x + y;
     BinaryOperator<Integer> minus = (x, y) -> x - y;
     BinaryOperator<Integer> multiply = (x, y) -> x * y;
-    BinaryOperator<Integer> devide = (x, y) -> x  / y;  // y - не может быть нулем
+    BinaryOperator<Integer> devide = (x, y) -> {
+        if (y != 0) return x / y;  // y - не может быть нулем
+        else throw new ArithmeticException("Ошибка, на 0 делить нельзя");
+    };
 
 
     UnaryOperator<Integer> pow = x -> x * x;
